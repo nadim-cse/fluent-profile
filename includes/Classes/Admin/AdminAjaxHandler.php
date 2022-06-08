@@ -92,11 +92,11 @@ class AdminAjaxHandler
 
         $total = $paymentsQuery->count();
 
+        //return the json
         wp_send_json_success([
             'payments' => $payments,
             'total'     => $total,
             'last_page' => ceil($total / $limit),
-
         ]);
     }
 
