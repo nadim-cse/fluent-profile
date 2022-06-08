@@ -1,0 +1,8 @@
+.idea
+node_modules
+svn/*
+dist/
+package-lock.json
+.DS_Store
+svn.php
+svn
