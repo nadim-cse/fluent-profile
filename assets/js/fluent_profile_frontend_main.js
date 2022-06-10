@@ -2081,3 +2081,4 @@ new window.FluentProfile.Vue({
 
 /******/ })()
 ;
+//# sourceMappingURL=fluent_profile_frontend_main.js.map

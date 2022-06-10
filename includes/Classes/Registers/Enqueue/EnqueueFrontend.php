@@ -15,23 +15,9 @@ class EnqueueFrontend
 
     public function enqueueAssets()
     {
-        //$shortcode = "[fluent_donation_profile id='all']";
-        //        $post_type = 'page';
-        //        $found_id = null;
-        //        $pageSlug = basename(get_permalink());
-        //        $page = get_posts([ 'name' => $pageSlug, 'post_type' => $post_type ]);
-        //
-        //        if (false !== strpos($page[0]->post_content, $shortcode)) {
-        //            $found_id = $page[0]->ID;
-        //
-        //        }
-
-
-        //if($found_id) {
         wp_enqueue_style('fluent_profile_custom.css', FLUENTPROFILE_URL . 'assets/css/custom.css');
 
-        wp_enqueue_style('icofont_ffp', FLUENTPROFILE_URL . 'https://unpkg.com/@icon/icofont/icofont.css');
-
+        wp_enqueue_style('icofont_ffp', 'https://unpkg.com/@icon/icofont/icofont.css');
 
         wp_enqueue_script('fluent_profile_boot', FLUENTPROFILE_URL . 'assets/js/boot.js', array('jquery'), '1.0.0', true);
 
@@ -39,7 +25,7 @@ class EnqueueFrontend
 
         wp_enqueue_script('fluent_profile_frontend', FLUENTPROFILE_URL . 'assets/js/fluent_profile_frontend.js', array('jquery'), '1.0.0', true);
 
-        wp_enqueue_style('fluent-profile-admin-css', FLUENTPROFILE_URL . 'assets/css/fluent_profile_admin.css');
+        wp_enqueue_style('fluent_profile-admin-css', FLUENTPROFILE_URL . 'assets/css/fluent_profile_admin.css');
 
         global $wp;
         $currentUrl = home_url( $wp->request );

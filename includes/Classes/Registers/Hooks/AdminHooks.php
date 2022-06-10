@@ -2,6 +2,7 @@
 
 namespace FluentProfile\Classes\Registers\Hooks;
 
+use FluentForm\Request;
 use FluentProfile\Classes\Models\Profile;
 
 class AdminHooks

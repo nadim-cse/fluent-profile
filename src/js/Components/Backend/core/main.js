@@ -23,6 +23,7 @@ window.FluentProfile.Vue.mixin({
 // Import vue router
 import {routes} from './routes'
 
+
 // Register vue router for wordpress
 const router = new window.FluentProfile.Router({
     routes: window.FluentProfile.applyFilters('FluentProfile_global_vue_routes', routes),

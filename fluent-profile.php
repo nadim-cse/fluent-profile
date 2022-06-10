@@ -10,7 +10,8 @@
  * Author URI: http://www/github.com/nadimcse
  * Version: 1.0.0
  * License: GPLv2 or later
- * Text Domain: fluent-profile
+ * Text Domain: fluent_profile
+ * Domain Path: /resources/languages
  *
  */
 
@@ -55,8 +56,6 @@ if (!defined('FLUENTPROFILE_VERSION')) {
 
     require FLUENTPROFILE_DIR . 'includes/autoload.php';
 
-
-
     class FluentProfile
     {
 
@@ -78,7 +77,7 @@ if (!defined('FLUENTPROFILE_VERSION')) {
 
         public function textDomain()
         {
-            load_plugin_textdomain('fluent_profile', false, basename(dirname(__FILE__)) . '/languages');
+            load_plugin_textdomain('fluent_profile', false, basename(dirname(__FILE__)) . '/resources/languages');
         }
 
         public function commonActions()
@@ -98,7 +97,6 @@ if (!defined('FLUENTPROFILE_VERSION')) {
         }
     }
 
-
     add_action('plugins_loaded', function () {
         (new FluentProfile())->boot();
     });
@@ -107,10 +105,10 @@ if (!defined('FLUENTPROFILE_VERSION')) {
     if (!is_admin()) {
 
         add_action('template_redirect',function (){
+
             global $posts;
             $pattern = get_shortcode_regex();
             preg_match('/'.$pattern.'/s', $posts[0]->post_content, $matches);
-//            dd($matches);
             if (is_array($matches) && in_array("fluent_donation_profile", $matches)) {
 
                 $enqueueFrontend = new \FluentProfile\Classes\Registers\Enqueue\EnqueueFrontend();
