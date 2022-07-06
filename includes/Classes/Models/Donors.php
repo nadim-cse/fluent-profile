@@ -69,6 +69,7 @@ class Donors
                 'fluentform_transactions.currency',
 
             ])
+            ->where('fluentform_transactions.status', '=', 'paid')
             ->orderBy($afValue, $afActions)
             ->limit($limit)
             ->offset($offset);
@@ -90,6 +91,7 @@ class Donors
                 wpFluent()->raw('SUM(payment_total) as total_donation')
 
             ])
+            ->where('fluentform_transactions.status', '=', 'paid')
             ->groupBy('fluentform_transactions.payer_name')
             ->orderBy('fluentform_transactions.payment_total', 'desc')
             ->limit(10);
@@ -126,6 +128,7 @@ class Donors
                 'fluentform_transactions.currency',
 
             ])
+            ->where('fluentform_transactions.status', '=', 'paid')
             ->where('fluentform_transactions.payer_email', $getDonorEmail->payer_email)
             ->get();
 

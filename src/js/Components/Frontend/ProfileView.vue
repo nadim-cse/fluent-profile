@@ -1,8 +1,9 @@
 <template>
-  <div>
+
     <div class="crud-project-header">
+
       <el-row>
-        <el-container>
+
           <template>
             <el-row style="width: 100%">
               <el-skeleton :rows="3" :loading="loading" animated>
@@ -59,10 +60,11 @@
               </el-skeleton>
             </el-row>
           </template>
-        </el-container>
+
       </el-row>
+
     </div>
-  </div>
+
 </template>
 <script>
 export default {

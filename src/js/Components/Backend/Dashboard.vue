@@ -26,6 +26,13 @@
     <el-container>
       <el-main>
         <el-row :gutter="12" v-loading="loading">
+
+          <el-col v-if="!payments.length && !loading">
+            <el-card shadow="always">
+              <h2 class="ffp-text-center">No data found</h2>
+            </el-card>
+          </el-col>
+
           <el-col :span="8" v-for="(item, index) in payments" :key="index"
                   :style="payments.length > 2 ? 'margin-top:10px' : ''">
             <el-card shadow="always">
@@ -58,6 +65,7 @@ export default {
     return {
       payments: [],
       loading: false,
+      hasData: false,
     };
   },
   methods: {
@@ -67,9 +75,11 @@ export default {
         route: "get_payment",
         _wpnonce: FluentProfileAdmin.fluent_profile_admin_nonce,
       })
+
           .then((response) => {
             this.payments = response.data.payments;
             this.loading = false;
+            this.hasData = true;
              
           })
           .fail((error) => {
@@ -88,10 +98,11 @@ export default {
     this.getPayment();
     let clipboard = new Clipboard(".shortcode");
     clipboard.on("success", (e) => {
-      this.$message({
+      this.$notify({
+        title: 'Shortcode copied',
         message: "Copied to clipboard!",
-        type: "success"
-      })
+        type: 'success'
+      });
     })
   },
 };
@@ -140,6 +151,15 @@ export default {
 .el-button,
 a {
   text-decoration: none;
+}
+.ffp-text-center{
+  text-align: center !important;
+}
+.ffp-text-right{
+  text-align: right !important;
+}
+.ffp-text-left{
+  text-align: left !important;
 }
 </style>
 

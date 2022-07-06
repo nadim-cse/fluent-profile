@@ -1,8 +1,8 @@
 <template>
-  <div>
+
     <el-container>
       <el-main>
-        <el-row :gutter="12">
+        <el-row :gutter="6">
                <span style="float:right">
                   <el-select v-model="filterValue" placeholder="Select">
                      <el-option
@@ -78,7 +78,7 @@
         </el-row>
       </el-main>
     </el-container>
-  </div>
+
 </template>
 <script>
 
@@ -170,12 +170,7 @@ export default {
       if (!id) {
         return;
       }
-
-      // window.open( FluentProfileAdmin.website_url+"donor");
-      // window.location.href = FluentProfileAdmin.website_url+'?donor_id='+id;
       location.href= window.location+"/?donor_id="+ id;
-      // this.$router.push( {query: { donor_id: id} })
-
 
     },
 

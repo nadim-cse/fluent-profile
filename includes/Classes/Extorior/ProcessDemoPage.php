@@ -5,7 +5,7 @@ namespace FluentProfile\Classes\Extorior;
 use FluentProfile\Classes\AccessControl;
 use FluentProfile\Classes\Models\Profile;
 
-class ProcessDemoPage
+class   ProcessDemoPage
 {
 
     public function handleExteriorPages()

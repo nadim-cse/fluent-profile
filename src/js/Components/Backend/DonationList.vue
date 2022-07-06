@@ -30,11 +30,11 @@
             <el-table-column width="220" label="Submission ID">
               <template slot-scope="scope">
                 <a class="payment_sub_url" :href="scope.row.entry_url">
-                  #{{ scope.row.submission_id }}
-                </a>
-                <span class="ff_payment_badge" v-if="scope.row.payment_total">{{
+                  #{{ scope.row.submission_id }} <span class="ff_payment_badge" v-if="scope.row.payment_total">{{
                     formatMoney(scope.row)
                   }}</span>
+                </a>
+
               </template>
             </el-table-column>
 <!--            <el-table-column label="Form" prop="title"></el-table-column>-->
@@ -67,8 +67,21 @@
                 <span
                     v-if="scope1.row.status == 'pending'"
                     style="
-                    color: black;
+                    color: #3d4eac;
                     background: yellow;
+                    padding: 10px;
+                    border-radius: 13px;
+                    font-weight: bold;
+                    text-transform: capitalize;
+                  "
+                >
+                  {{ scope1.row.status }}
+                </span>
+                <span
+                    v-if="scope1.row.status == 'processing'"
+                    style="
+                    color: #3d4eac;
+                    background: #d6ecff;
                     padding: 10px;
                     border-radius: 13px;
                     font-weight: bold;
@@ -118,6 +131,7 @@
   </div>
 </template>
 <script>
+import Clipboard from "clipboard";
 export default {
   name: "Donationlist",
   data() {
@@ -174,6 +188,14 @@ export default {
   },
   mounted() {
     this.getPayment();
+    let clipboard = new Clipboard(".shortcode");
+    clipboard.on("success", (e) => {
+      this.$notify({
+        title: 'Shortcode copied',
+        message: "Copied to clipboard!",
+        type: 'success'
+      });
+    })
   },
 };
 </script>

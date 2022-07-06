@@ -19,6 +19,8 @@
 use FluentProfile\Classes\Registers\Hooks\ActionHooks;
 use FluentProfile\Classes\Registers\Hooks\AdminHooks;
 
+
+
 /**
  * This program is free software; you can redistribute it and/or
  * modify it under the terms of the GNU General Public License
@@ -67,6 +69,7 @@ if (!defined('FLUENTPROFILE_VERSION')) {
             $this->textDomain();
             $this->commonActions();
             $this->registerShortcodes();
+            add_action('fluentform_after_payment_status_change', [$this, 'invoiceGenerate'],  10, 2);
         }
 
         public function adminHooks()
@@ -95,6 +98,12 @@ if (!defined('FLUENTPROFILE_VERSION')) {
             $shortCodes->register();
             return;
         }
+
+        public function invoiceGenerate($newStatus, $submission){
+
+            $invoice = new FluentProfile\Classes\Registers\Invoice\Invoice();
+            $invoice->generateInvoice($newStatus,$submission);
+        }
     }
 
     add_action('plugins_loaded', function () {
@@ -108,12 +117,15 @@ if (!defined('FLUENTPROFILE_VERSION')) {
 
             global $posts;
             $pattern = get_shortcode_regex();
-            preg_match('/'.$pattern.'/s', $posts[0]->post_content, $matches);
-            if (is_array($matches) && in_array("fluent_donation_profile", $matches)) {
+            if( have_posts()){
+                preg_match('/'.$pattern.'/s', $posts[0]->post_content, $matches);
+                if (is_array($matches) && in_array("fluent_donation_profile", $matches)) {
 
-                $enqueueFrontend = new \FluentProfile\Classes\Registers\Enqueue\EnqueueFrontend();
-                $enqueueFrontend->register();
+                    $enqueueFrontend = new \FluentProfile\Classes\Registers\Enqueue\EnqueueFrontend();
+                    $enqueueFrontend->register();
+                }
             }
+
         });
 
     }
@@ -124,15 +136,5 @@ if (!defined('FLUENTPROFILE_VERSION')) {
         deactivate_plugins(plugin_basename(__FILE__));
     });
 }
-// $fomrSubmissionHandler = new \FluentProfile\Classes\Admin\FormSubmission();
-// add_action('fluentform_submission_inserted', [$fomrSubmissionHandler, 'index'], 10, 3);
 
-add_action('fluentform_after_payment_status_change', function($newStatus, $submission){
-    if($newStatus == "paid") {
-        dd($newStatus);
-    }
-}, 10, 2);
 
-//add_action('phpmailer_init', function($phpMailer){
-//    dd($phpMailer);
-//});

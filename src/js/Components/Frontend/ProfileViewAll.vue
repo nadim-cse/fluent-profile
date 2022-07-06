@@ -1,5 +1,5 @@
 <template>
-  <div>
+
     <span v-if="!singleDonorView">
       <div class="fd-profile-header">
         <div class="title">
@@ -7,7 +7,8 @@
         </div>
       </div>
       <el-container>
-        <template>
+        <el-row>
+          <template>
           <el-tabs v-model="activeName" @tab-click="changeTab" type="border-card">
             <el-tab-pane label="All Donors" name="all_donnors">
               <all-profiles :donor_type=activeName v-if="donorType == 'all_donnors'"></all-profiles>
@@ -17,12 +18,13 @@
             </el-tab-pane>
           </el-tabs>
         </template>
+        </el-row>
       </el-container>
     </span>
     <span v-else>
         <profile-view></profile-view>
     </span>
-  </div>
+
 </template>
 <script>
 import AllProfiles from "./child_components/profile_view_all/AllProfiles";

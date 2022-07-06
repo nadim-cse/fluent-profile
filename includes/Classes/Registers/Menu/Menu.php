@@ -45,7 +45,7 @@ class Menu
         $submenu['fluent-profile']['fluent-profile'] = array(
             __('Dashboard', 'textdomain'),
             $menuPermission,
-            'admin.php?page=fluent-profile#/',
+            'admin.php?page=fluent_profile#/',
         );
 
         $entriesTitle =  __('Donations', 'fluentform');

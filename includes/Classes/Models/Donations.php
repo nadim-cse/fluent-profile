@@ -25,7 +25,7 @@ class Donations
 
         $paymentsQuery = wpFluent()->table('fluentform_transactions')
             ->select([
-                wpFluent()->raw("SUM({$wpdb->prefix}fluentform_transactions.payment_total) / 100 as total_amount"),
+                wpFluent()->raw("SUM({$wpdb->prefix}fluentform_transactions.payment_total) / 100 as total_amount", "SUM({$wpdb->prefix}fluentform_transactions.payment_total) / 100 as total_pending"),
                 'fluentform_transactions.form_id',
                 'fluentform_transactions.currency',
                 'fluentform_forms.title'
