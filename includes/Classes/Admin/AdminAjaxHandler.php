@@ -32,6 +32,7 @@ class AdminAjaxHandler
     {
 
         $route = sanitize_text_field($_REQUEST['route']);
+        //end points
         $validRoutes = array(
             'get_payment' => 'getDonationForms',
             'get_payment_list' => 'getDonationList',
